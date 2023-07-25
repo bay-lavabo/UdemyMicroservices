@@ -15,10 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
+//Sub tipini maplememesi için;
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
-// Add services to the container.
 
+// Add services to the container.
 builder.Services.AddControllers(opt => 
 {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
