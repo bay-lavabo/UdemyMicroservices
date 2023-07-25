@@ -34,8 +34,8 @@ namespace FreeCourse.Services.Basket.Controllers
             return CreateActionResultInstance(response);
         }
 
-        [HttpGet]
-        [Route("/api/[controller]/DeleteBasket")]
+        [HttpDelete]
+        //[Route("/api/[controller]/DeleteBasket")]
         public async Task<IActionResult> DeleteBasket()
         {
             return CreateActionResultInstance(await _basketService.DeleteBasket(_sharedIdentityService.GetUserId));

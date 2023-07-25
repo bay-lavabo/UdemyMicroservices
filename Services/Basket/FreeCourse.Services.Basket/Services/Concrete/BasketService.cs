@@ -1,4 +1,5 @@
 ﻿using FreeCourse.Services.Basket.Dtos;
+using FreeCourse.Services.Basket.Repository.Abstarct;
 using FreeCourse.Services.Basket.Repository.Context;
 using FreeCourse.Services.Basket.Services.Abstract;
 using FreeCourse.Shared.Dtos;
@@ -8,23 +9,23 @@ namespace FreeCourse.Services.Basket.Services.Concrete
 {
     public class BasketService : IBasketService
     {
-        private readonly RedisContext _redisContext;
+        private readonly IBasketRepository _basketRepository;
 
-        public BasketService(RedisContext redisContext)
+        public BasketService(IBasketRepository basketRepository)
         {
-            _redisContext = redisContext;
+            _basketRepository = basketRepository;
         }
 
         public async Task<ResponseDto<bool>> DeleteBasket(string userId)
         {
-            var status = await _redisContext.GetDb().KeyDeleteAsync(userId);
+            var status = await _basketRepository.DeleteBasket(userId);
 
             return status ? ResponseDto<bool>.Success(204) : ResponseDto<bool>.Fail("Basket could not found.", 404);
         }
 
         public async Task<ResponseDto<BasketDto>> GetBasket(string userId)
         {
-            var exitstBasket = await _redisContext.GetDb().StringGetAsync(userId);
+            var exitstBasket = await _basketRepository.GetBasket(userId);
 
             if (String.IsNullOrEmpty(exitstBasket))
             {
@@ -36,7 +37,7 @@ namespace FreeCourse.Services.Basket.Services.Concrete
 
         public async Task<ResponseDto<bool>> SaveOrUpdate(BasketDto basket)
         {
-            var status = await _redisContext.GetDb().StringSetAsync(basket.UserId,JsonSerializer.Serialize(basket));
+            var status = await _basketRepository.SaveOrUpdate(basket);
 
             return status ? ResponseDto<bool>.Success(204) : ResponseDto<bool>.Fail("Basket could not update or save.", 500);
         }

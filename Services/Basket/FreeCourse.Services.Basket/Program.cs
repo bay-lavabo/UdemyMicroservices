@@ -1,4 +1,6 @@
 
+using FreeCourse.Services.Basket.Repository.Abstarct;
+using FreeCourse.Services.Basket.Repository.Concrete;
 using FreeCourse.Services.Basket.Repository.Context;
 using FreeCourse.Services.Basket.Services.Abstract;
 using FreeCourse.Services.Basket.Services.Concrete;
@@ -41,6 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddScoped<IBasketService,BasketService>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddScoped<ISharedIdentityService,SharedIdentityService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<RedisSettings>(configuration.GetSection("RedisSettings"));

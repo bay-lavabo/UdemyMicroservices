@@ -16,9 +16,4 @@
     <ProjectReference Include="..\..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repository\Abstarct\" />
-    <Folder Include="Repository\Concrete\" />
-  </ItemGroup>
-
 </Project>
