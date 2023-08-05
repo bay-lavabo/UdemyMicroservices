@@ -10,11 +10,15 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
     public class OrderItem : EntityBase
     {
         public string ProductId { get; private set; }
-
         public string ProductName { get; private set; }
         public string PictureUrl { get; private set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; private set; }
         public Decimal Price { get; private set; }
+
+        public OrderItem()
+        {
+
+        }
 
         public OrderItem(string productId, string productName, string pictureUrl, int quantity, decimal price)
         {

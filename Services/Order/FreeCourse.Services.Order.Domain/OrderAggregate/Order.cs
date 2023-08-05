@@ -24,6 +24,10 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
         //Encapsulation;
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
+        public Order()
+        {
+
+        }
         public Order(Address address, string buyerId)
         {
             _orderItems = new List<OrderItem>();
@@ -44,6 +48,7 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
                 _orderItems.Add(newOrderItem);
             }
         }
+
 
         //Toplam miktarı getirir lambda kullanılırsa sadece get i  olur.
         public decimal GetTotalPrice => _orderItems.Sum(x => x.Price);
