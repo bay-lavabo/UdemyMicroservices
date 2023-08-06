@@ -1,4 +1,6 @@
-﻿using FreeCourse.Services.Order.Application.Commands.Insert;
+﻿using FreeCourse.Services.Order.Application.Commands.Delete;
+using FreeCourse.Services.Order.Application.Commands.Insert;
+using FreeCourse.Services.Order.Application.Commands.Update;
 using FreeCourse.Services.Order.Application.Queries;
 using FreeCourse.Shared.ControllerBases;
 using FreeCourse.Shared.Services.Abstract;
@@ -33,6 +35,22 @@ namespace FreeCourse.Services.Order.API.Controllers
         public async Task<IActionResult> SaveOrder(CreateOrderCommand createOrderCommand)
         {
             var response = await _mediator.Send(createOrderCommand);
+
+            return CreateActionResultInstance(response);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOrder(DeleteOrderCommand deleteOrderCommand)
+        {
+            var response = await _mediator.Send(deleteOrderCommand);
+
+            return CreateActionResultInstance(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpddateOrder(UpdateOrderCommand updateOrderCommand)
+        {
+            var response = await _mediator.Send(updateOrderCommand);
 
             return CreateActionResultInstance(response);
         }

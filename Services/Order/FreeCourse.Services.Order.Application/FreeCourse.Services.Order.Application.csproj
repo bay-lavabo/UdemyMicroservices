@@ -16,11 +16,4 @@
     <ProjectReference Include="..\FreeCourse.Services.Order.Infrastructure\FreeCourse.Services.Order.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Delete\" />
-    <Folder Include="Commands\Update\" />
-    <Folder Include="Handlers\Commands\Delete\" />
-    <Folder Include="Handlers\Commands\Update\" />
-  </ItemGroup>
-
 </Project>
