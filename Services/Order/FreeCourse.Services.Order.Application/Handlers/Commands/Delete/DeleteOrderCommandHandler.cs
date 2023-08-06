@@ -26,7 +26,7 @@ namespace FreeCourse.Services.Order.Application.Handlers.Commands.Delete
         {
             var order = await _dbContext.Orders.Include(x => x.OrderItems).Where(x => x.Id == request.Id).ToListAsync();
 
-            if (order == null)
+            if (!order.Any())
             {
                 return ResponseDto<IsSuccessDto>.Fail("Order not found.", 404);
             }
