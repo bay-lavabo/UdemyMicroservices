@@ -16,11 +16,11 @@ namespace FreeCourse.Web.Services.Concrete
     public class IdentityService : IIdentityService
     {
         private readonly HttpClient _httpClient;
-        private readonly HttpContextAccessor _contextAccessor;
+        private readonly IHttpContextAccessor _contextAccessor;
         private readonly ClientSettings _clientSettings;
         private readonly ServiceApiSettings _serviceApiSettings;
 
-        public IdentityService(HttpClient httpClient, HttpContextAccessor contextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
+        public IdentityService(HttpClient httpClient, IHttpContextAccessor contextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = httpClient;
             _contextAccessor = contextAccessor;
@@ -38,7 +38,7 @@ namespace FreeCourse.Web.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<ResponseDto<bool>> SingIn(SignInInput signInInput)
+        public async Task<ResponseDto<bool>> SignIn(SignInInput signInInput)
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {

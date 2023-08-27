@@ -1,4 +1,6 @@
 using FreeCourse.Web.Models.Settings;
+using FreeCourse.Web.Services.Concrete;
+using FreeCourse.Web.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("Cli
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient<IIdentityService, IdentityService>();
 
 
 
